@@ -1,6 +1,6 @@
 {
   "name": "react-notes-app",
-  "homepage": "https://notes.sravanth.co.uk/",
+  "homepage": "http://notes.sravanth.co.uk/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

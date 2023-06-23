@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import React from 'react';
 
 const AddNote = ({ handleAddNote }) => {
 	const [noteText, setNoteText] = useState('');
@@ -20,8 +21,8 @@ const AddNote = ({ handleAddNote }) => {
 	return (
 		<div className='note new'>
 			<textarea
-				rows='8'
-				cols='10'
+				rows={8}
+				cols={10}
 				placeholder='Type to add a note...'
 				value={noteText}
 				onChange={handleChange}

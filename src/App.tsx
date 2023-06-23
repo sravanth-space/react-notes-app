@@ -3,8 +3,9 @@ import { nanoid } from "nanoid";
 import NotesList from "./components/NotesList";
 import Search from "./components/Search";
 import Header from "./components/Header";
+import React from "react";
 
-const App = () => {
+export default function App() {
   const [notes, setNotes] = useState([
     {
       id: nanoid(),
@@ -33,7 +34,7 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    const savedNotes = JSON.parse(localStorage.getItem("react-notes-app-data"));
+    const savedNotes = JSON.parse(localStorage.getItem("react-notes-app-data") || "");
 
     if (savedNotes) {
       setNotes(savedNotes);
@@ -77,4 +78,4 @@ const App = () => {
   );
 };
 
-export default App;
+

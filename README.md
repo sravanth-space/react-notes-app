@@ -1,6 +1,1 @@
-# Run the code
-
-```
-npm install
-npm start
-```
+# Notes App

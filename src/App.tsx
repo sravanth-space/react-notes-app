@@ -33,11 +33,25 @@ export default function App() {
 
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    const savedNotes = JSON.parse(localStorage.getItem("react-notes-app-data") || "");
+  // useEffect(() => {
+  //   const savedNotes = JSON.parse(
+  //     localStorage.getItem("react-notes-app-data") || ""
+  //   );
 
+  //   if (savedNotes) {
+  //     setNotes(savedNotes);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    const savedNotes = localStorage.getItem("react-notes-app-data");
     if (savedNotes) {
-      setNotes(savedNotes);
+      try {
+        const parsedNotes = JSON.parse(savedNotes);
+        setNotes(parsedNotes);
+      } catch (error) {
+        console.error("Error parsing notes data from local storage:", error);
+      }
     }
   }, []);
 
@@ -45,7 +59,7 @@ export default function App() {
     localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
   }, [notes]);
 
-  const addNote = (text) => {
+  const addNote = text => {
     const date = new Date();
     const newNote = {
       id: nanoid(),
@@ -56,8 +70,8 @@ export default function App() {
     setNotes(newNotes);
   };
 
-  const deleteNote = (id) => {
-    const newNotes = notes.filter((note) => note.id !== id);
+  const deleteNote = id => {
+    const newNotes = notes.filter(note => note.id !== id);
     setNotes(newNotes);
   };
 
@@ -67,7 +81,7 @@ export default function App() {
         <Header handleToggleDarkMode={setDarkMode} />
         <Search handleSearchNote={setSearchText} />
         <NotesList
-          notes={notes.filter((note) =>
+          notes={notes.filter(note =>
             note.text.toLowerCase().includes(searchText.toLowerCase().trim())
           )}
           handleAddNote={addNote}
@@ -76,6 +90,4 @@ export default function App() {
       </div>
     </div>
   );
-};
-
-
+}
